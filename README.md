@@ -1,0 +1,1 @@
+This is readme for scripts which should be used at online event
