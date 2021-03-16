@@ -5,3 +5,6 @@ Add checkpoint 1
 
 Checkpoint 2:
 Add checkpoint 2
+
+Checkpoint 3:
+Add checkpoint 3
