@@ -11,8 +11,14 @@ fi
 
 if [[ $(git diff --stat) != '' ]]; then
   branch_status='dirty'
+  echo "Branch dirty. Resetting changes and creating temp branch"
+  git checkout .
+  echo "Cleaned git tree"
+  git checkout -b "temp"
+  echo "Set up temporal branch complete"
 else
   branch_status='clean'
+  echo "Branch clean."
 fi
 
 # if [ "$branch_status" == "dirty" ]; then
