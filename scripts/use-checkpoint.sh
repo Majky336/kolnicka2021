@@ -28,8 +28,9 @@ else
     echo "Temporal branch already set up. Switching"
 fi
 
+first_SHA=`git log --abbrev-commit --pretty=oneline --reverse | head -1 | cut -d ' ' -f1`
 target_SHA=`git log --abbrev-commit --pretty=oneline --grep="${search_term}" | cut -d ' ' -f1` 
 
 echo $target_SHA
 
-git cherry-pick $target_SHA
+git cherry-pick $first_SHA^..$target_SHA
