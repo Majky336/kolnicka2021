@@ -14,17 +14,19 @@ if [[ $(git diff --stat) != '' ]]; then
   echo "Branch dirty. Resetting changes and creating temp branch"
   git checkout .
   echo "Cleaned git tree"
-  git checkout -b "temp"
-  echo "Set up temporal branch complete"
+  temp_branch=`git branch -a | grep "temp"`
+  if test "y$temp_branch" = y; then
+    git checkout -b "temp"
+    echo "Set up temporal branch complete"
+  else
+    git checkout "temp"
+    echo "Temporal branch already set up. Switching"
+  fi
+  
 else
   branch_status='clean'
   echo "Branch clean."
 fi
-
-# if [ "$branch_status" == "dirty" ]; then
-#   git checkout .
-#   echo "Cleaned git tree."
-# fi
 
 target_SHA=`git log --abbrev-commit --pretty=oneline --grep="${search_term}" | cut -d ' ' -f1` 
 
